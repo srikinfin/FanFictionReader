@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.spicymango.fanfictionreader"
+        minSdkVersion 7
+        targetSdkVersion 22
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    //StoryDisplayActivity controls crashes, above 22.0.0
+    //https://code.google.com/p/android/issues/detail?id=174871
+    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile files('libs/jsoup-1.8.1.jar')
+}

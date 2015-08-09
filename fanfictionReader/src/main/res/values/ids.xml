@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="review_dialog_edit_text" type="id"></item>
+    <item name="filter" type="id"></item>
+    <item name="toolbar" type="id"></item>
+</resources>
