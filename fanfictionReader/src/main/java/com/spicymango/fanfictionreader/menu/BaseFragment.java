@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -69,6 +70,37 @@ public abstract class BaseFragment<T extends Parcelable> extends Fragment
 
 		mAdapter = adapter(mList);
 		mListView.setAdapter(mAdapter);
+
+		mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+			private int currentScrollState;
+			private int currentFirstVisibleItemIndex;
+			private int totalItemsInList;
+			private final int THRESHOLD_TO_DOWNLOAD_NEXT_PAGE = 5;
+
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				this.currentScrollState = scrollState;
+				this.isScrollCompleted();
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+								 int visibleItemCount, int totalItemCount) {
+				this.currentFirstVisibleItemIndex = firstVisibleItem;
+				this.totalItemsInList = totalItemCount;
+
+
+			}
+
+			private void isScrollCompleted() {
+				//When user scrolls to the bottom, automatically load the next page
+				if (currentFirstVisibleItemIndex >= totalItemsInList - THRESHOLD_TO_DOWNLOAD_NEXT_PAGE
+						&& this.currentScrollState == SCROLL_STATE_IDLE) {
+					mLoader.loadNextPage();
+				}
+			}
+		});
 
 		return v;
 	}
