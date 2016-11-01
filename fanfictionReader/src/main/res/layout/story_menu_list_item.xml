@@ -46,7 +46,8 @@
         android:layout_alignLeft="@+id/story_menu_list_item_author"
         android:layout_alignStart="@+id/story_menu_list_item_author"
         android:layout_below="@+id/story_menu_list_item_summary"
-        android:gravity="center_horizontal" >
+        android:gravity="center_horizontal"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:id="@+id/story_menu_list_item_words"
@@ -75,5 +76,17 @@
             android:text="@string/story_menu_follows"
 			android:textColor="?android:attr/textColorSecondary"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/story_menu_list_item_characters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="@string/story_menu_chapters"
+        android:textColor="?android:attr/textColorSecondary"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
 
 </RelativeLayout>

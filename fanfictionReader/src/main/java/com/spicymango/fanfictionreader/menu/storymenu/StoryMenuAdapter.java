@@ -22,7 +22,7 @@ public class StoryMenuAdapter extends ArrayAdapter<Story> {
 	/**
 	 * Contains the templates for the stories' additional details
 	 */
-	private final String words, chapters, follows;
+	private final String words, chapters, follows, characters;
 	/**
 	 * Creates a new StoryMenuAdapter
 	 * @param context The current context
@@ -33,6 +33,7 @@ public class StoryMenuAdapter extends ArrayAdapter<Story> {
 		words = context.getString(R.string.story_menu_words);
 		chapters = context.getString(R.string.story_menu_chapters);
 		follows = context.getString(R.string.story_menu_follows);
+		characters ="Characters %s";
 	}
 	
 	/**
@@ -62,6 +63,7 @@ public class StoryMenuAdapter extends ArrayAdapter<Story> {
 				holder.words = (TextView) convertView.findViewById(R.id.story_menu_list_item_words);
 				holder.follows = (TextView) convertView.findViewById(R.id.story_menu_list_item_follows);
 				holder.chapters = (TextView) convertView.findViewById(R.id.story_menu_list_item_chapters);
+				holder.characters = (TextView) convertView.findViewById(R.id.story_menu_list_item_characters);
 				convertView.setTag(holder);				
 			} else{
 				holder = (ViewHolder) convertView.getTag();
@@ -74,6 +76,7 @@ public class StoryMenuAdapter extends ArrayAdapter<Story> {
 			holder.words.setText(String.format(words, getItem(position).getWordLength()));
 			holder.follows.setText(String.format(follows, getItem(position).getFollows()));
 			holder.chapters.setText(String.format(chapters, getItem(position).getChapterLength()));
+			holder.characters.setText(String.format(characters, getItem(position).getCharacters()));
 
 		    return convertView;
 	}
@@ -89,5 +92,6 @@ public class StoryMenuAdapter extends ArrayAdapter<Story> {
 		private TextView summary;
 		private TextView title;
 		private TextView words;
+		private TextView characters;
 	}
 }
